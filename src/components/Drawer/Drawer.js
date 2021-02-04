@@ -14,10 +14,18 @@ import {
 import CameraAltIcon from "@material-ui/icons/CameraAlt";
 import PersonIcon from "@material-ui/icons/Person";
 import ContactsIcon from "@material-ui/icons/Contacts";
+import MessageIcon from "@material-ui/icons/Message";
+import TrendingUpIcon from "@material-ui/icons/TrendingUp";
+import NotificationsIcon from "@material-ui/icons/Notifications";
+import Ad from "./Ad/Ad";
+import Account from "./Account/Account";
 
 const useStyles = makeStyles({
   root: {
     backgroundColor: "#1f1f1f",
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
   },
   divider: {
     backgroundColor: "#ffffff",
@@ -71,10 +79,12 @@ const Drawer = () => {
       <Typography classes={{ h6: styles.heading }} variant="h6">
         Puzzle
       </Typography>
-      <List>
-        <ListItem button>
+      <List style={{ marginRight: "10px" }}>
+        <ListItem button style={{ backgroundColor: "#35cda7" }}>
           <ListItemIcon>
-            <CameraAltIcon style={{ color: "#ffffff" }} />
+            <IconButton>
+              <CameraAltIcon style={{ color: "#ffffff" }} />
+            </IconButton>
           </ListItemIcon>
           <ListItemText
             classes={{ primary: styles.listItem }}
@@ -102,35 +112,37 @@ const Drawer = () => {
       </List>
       <Divider classes={{ root: styles.divider }} />
 
-      <List>
+      <List style={{ marginRight: "10px" }}>
         <ListItem button>
           <ListItemIcon>
-            <CameraAltIcon style={{ color: "#ffffff" }} />
+            <MessageIcon style={{ color: "#ffffff" }} />
           </ListItemIcon>
           <ListItemText
             classes={{ primary: styles.listItem }}
-            primary={"Media Library"}
+            primary={"Messages"}
           />
         </ListItem>
         <ListItem button>
           <ListItemIcon>
-            <PersonIcon style={{ color: "#ffffff" }} />
+            <TrendingUpIcon style={{ color: "#ffffff" }} />
           </ListItemIcon>
           <ListItemText
             classes={{ primary: styles.listItem }}
-            primary={"About Me"}
+            primary={"Statistics"}
           />
         </ListItem>
         <ListItem button>
           <ListItemIcon>
-            <ContactsIcon style={{ color: "#ffffff" }} />
+            <NotificationsIcon style={{ color: "#ffffff" }} />
           </ListItemIcon>
           <ListItemText
             classes={{ primary: styles.listItem }}
-            primary={"Contacts"}
+            primary={"Notification"}
           />
         </ListItem>
       </List>
+      <Ad />
+      <Account />
     </div>
   );
 
@@ -140,6 +152,9 @@ const Drawer = () => {
         <IconButton onClick={toggleDrawer("left", true)}>
           <MenuIcon style={{ color: "#ffffff" }} />
         </IconButton>
+        <Typography classes={{ h6: styles.heading }} variant="h6">
+          Puzzle
+        </Typography>
         <SwipeableDrawer
           classes={{ paper: styles.paper }}
           anchor={"left"}
