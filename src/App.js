@@ -7,6 +7,8 @@ import Grid from "@material-ui/core/Grid";
 import Hidden from "@material-ui/core/Hidden";
 
 import Drawer from "./components/Drawer/Drawer";
+import Heading from "./components/Heading/Heading";
+import Main from "./components/Main/Main";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,17 +26,16 @@ function App() {
 
   return (
     <div className={classes.root}>
-      <Grid container spacing={1}>
+      <Grid container spacing={0}>
         <Hidden smUp>
           <Grid item xs={12}>
-            {/* <Paper className={classes.paper}>drawer</Paper> */}
             <Drawer />
           </Grid>
           <Grid item xs={12}>
-            <Paper className={classes.paper}>1</Paper>
+            <Heading />
           </Grid>
           <Grid item xs={12}>
-            <Paper className={classes.paper}>2</Paper>
+            <Main />
           </Grid>
         </Hidden>
         <Hidden smDown>
