@@ -4,7 +4,7 @@ import AlbumCard from "./AlbumCard/AlbumCard";
 
 const useStyles = makeStyles({
   root: {
-    height: "100vh",
+    // height: "100vh",
     backgroundColor: "#1f1f1f",
   },
 });

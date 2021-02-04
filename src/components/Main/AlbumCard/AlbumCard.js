@@ -1,20 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import axios from "../../../api/api";
 
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
-// import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
-
 import Avatar from "@material-ui/core/Avatar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import { red } from "@material-ui/core/colors";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
-
 import MoreVertIcon from "@material-ui/icons/MoreVert";
+import { CardMedia } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,8 +28,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function RecipeReviewCard() {
+export default function AlbumCard() {
   const classes = useStyles();
+
+  const [url, setUrl] = useState(null);
+
+  useEffect(() => {
+    console.log(process.env.REACT_APP_ACCESS_KEY);
+    axios.get("photos/random").then((response) => {
+      console.log(response.data);
+      setUrl(response.data.urls.small);
+    });
+  });
 
   return (
     <Card className={classes.root}>
@@ -48,11 +57,7 @@ export default function RecipeReviewCard() {
         title="Shrimp and Chorizo Paella"
         subheader="September 14, 2016"
       />
-      {/* <CardMedia
-        className={classes.media}
-        image="/static/images/cards/paella.jpg"
-        title="Paella dish"
-      /> */}
+      <CardMedia className={classes.media} image={url} title="Paella dish" />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
           This impressive paella is a perfect party dish and a fun meal to cook
