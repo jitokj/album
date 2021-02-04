@@ -1,5 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import AlbumCard from "./AlbumCard/AlbumCard";
 
 const useStyles = makeStyles({
   root: {
@@ -10,7 +11,12 @@ const useStyles = makeStyles({
 
 const Main = () => {
   const classes = useStyles();
-  return <div className={classes.root}></div>;
+  return (
+    <div className={classes.root}>
+      <AlbumCard />
+      <AlbumCard />
+    </div>
+  );
 };
 
 export default Main;
