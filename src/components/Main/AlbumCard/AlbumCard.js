@@ -13,15 +13,20 @@ import { red } from "@material-ui/core/colors";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
-import { CardMedia } from "@material-ui/core";
+import { CardMedia, CircularProgress } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 300,
+    marginBottom: 20,
   },
   media: {
     height: 0,
     paddingTop: "56.25%", // 16:9
+  },
+  progress: {
+    position: "relative",
+    left: "50%",
   },
   avatar: {
     backgroundColor: red[500],
@@ -31,38 +36,53 @@ const useStyles = makeStyles((theme) => ({
 export default function AlbumCard() {
   const classes = useStyles();
 
-  const [url, setUrl] = useState(null);
+  const [url, setUrl] = useState("");
+  const [profile, setProfile] = useState("");
+  const [title, setTitle] = useState("");
+  const [date, setDate] = useState("");
+  const [bio, setBio] = useState("");
 
   useEffect(() => {
-    console.log(process.env.REACT_APP_ACCESS_KEY);
     axios.get("photos/random").then((response) => {
       console.log(response.data);
       setUrl(response.data.urls.small);
+      setProfile(response.data.user.profile_image.small);
+      setTitle(response.data.alt_description);
+      setDate(response.data.created_at);
+      setBio(response.data.user);
     });
-  });
+  }, []);
 
   return (
     <Card className={classes.root}>
       <CardHeader
         avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            R
-          </Avatar>
+          <Avatar
+            aria-label="recipe"
+            src={profile}
+            className={classes.avatar}
+          />
         }
         action={
           <IconButton aria-label="settings">
             <MoreVertIcon />
           </IconButton>
         }
-        title="Shrimp and Chorizo Paella"
-        subheader="September 14, 2016"
+        title={title}
+        subheader={date}
       />
-      <CardMedia className={classes.media} image={url} title="Paella dish" />
+      {url ? (
+        <CardMedia className={classes.media} image={url} title={title} />
+      ) : (
+        <CircularProgress className={classes.progress} />
+      )}
+
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the
-          mussels, if you like.
+          {`${bio?.first_name}  ${bio?.last_name}`}
+        </Typography>
+        <Typography variant="body2" color="textSecondary" component="p">
+          {bio?.bio}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>

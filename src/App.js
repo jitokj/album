@@ -14,6 +14,9 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
+  main: {
+    backgroundColor: "#1f1f1f",
+  },
   paper: {
     padding: theme.spacing(2),
     textAlign: "center",
@@ -34,7 +37,7 @@ function App() {
           <Grid item xs={12}>
             <Heading />
           </Grid>
-          <Grid item xs={12}>
+          <Grid className={classes.main} item xs={12}>
             <Main />
           </Grid>
         </Hidden>

@@ -4,8 +4,12 @@ import AlbumCard from "./AlbumCard/AlbumCard";
 
 const useStyles = makeStyles({
   root: {
-    // height: "100vh",
-    backgroundColor: "#1f1f1f",
+    // backgroundColor: "#1f1f1f",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: "column",
+    marginTop: 20,
   },
 });
 
@@ -13,6 +17,7 @@ const Main = () => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
+      <AlbumCard />
       <AlbumCard />
       <AlbumCard />
     </div>
